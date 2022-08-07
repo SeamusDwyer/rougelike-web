@@ -1,5 +1,6 @@
 import { createSlice, current } from "@reduxjs/toolkit";
 import { loadState } from "../localStorage";
+import { v4 } from "uuid";
 
 const START_GAME_STATE = { enemies: {} };
 const persistedState = loadState();
@@ -15,18 +16,16 @@ export const enemiesSlice = createSlice({
   reducers: {
     generateEnemies: (state) => {
       const enemies = {};
-      enemies["Dave"] = { name: "Dave", health: 12 };
-      enemies["Paul"] = { name: "Paul", health: 5 };
+      const idA = v4();
+      enemies[idA] = { id: idA, name: "Dave", health: 12, maxHealth: 12 };
+      const idB = v4();
+      enemies[idB] = { id: idB, name: "Paul", health: 5, maxHealth: 5 };
       state.enemies = enemies;
     },
     damageEnemy: (state, action) => {
-      console.log(action);
-      console.log(current(state));
-      const { name, card } = action.payload;
-      const enemy = state.enemies[name];
-      console.log(enemy);
-
-      enemy.health -= 1;
+      const { id, card } = action.payload;
+      const enemy = state.enemies[id];
+      enemy.health -= card.damage;
     },
   },
 });

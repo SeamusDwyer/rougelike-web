@@ -7,6 +7,8 @@ import Cards from "components/Cards/Cards";
 import Enemies from "components/Enemies/Enemies";
 import { generateEnemies } from "slices/enemiesSlice";
 import Healthbar from "components/Healthbar/Healthbar";
+import Deck from "components/Deck";
+import Grave from "components/Grave";
 
 function Game() {
   const catHealth = useSelector((state) => {
@@ -28,7 +30,8 @@ function Game() {
       </div>
 
       <Cards />
-
+      <Deck />
+      <Grave />
       <div>
         <button
           onClick={() => {

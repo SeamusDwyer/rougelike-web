@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { loadState } from "../localStorage";
+import { v4 } from "uuid";
 
 const persistedState = loadState();
 
@@ -11,6 +12,7 @@ const START_GAME_STATE = {
   selectedCard: null,
   deck: [],
   hand: [],
+  grave: [],
 };
 
 export const gameSlice = createSlice({
@@ -24,21 +26,27 @@ export const gameSlice = createSlice({
   reducers: {
     setSelectedCard: (state, action) => {
       const { card } = action.payload;
-      state.selectedCard = card;
+      console.log(card);
+      if (state.selectedCard?.id === card.id) {
+        state.selectedCard = null;
+      } else {
+        state.selectedCard = card;
+      }
+
       return state;
     },
     resetGame: () => {
       return START_GAME_STATE;
     },
     generateDeck: (state) => {
-      state.isDeckGenerated = true;
-
       const deck = [];
       for (let i = 0; i < DECK_SIZE; i++) {
         deck.push({
-          title: "Scratch",
+          id: v4(),
+          title: `Card ${i}`,
           description: "Deals 1 damage",
           cost: Math.floor(Math.random() * 9 + 1),
+          damage: Math.floor(Math.random() * 9 + 1),
         });
       }
 
@@ -52,9 +60,23 @@ export const gameSlice = createSlice({
         state.hand.push(card);
       }
     },
+    playCard: (state, action) => {
+      console.log("Play card");
+      const { id } = action.payload;
+      for (let i = 0; i < state.hand.length; i++) {
+        console.log(state.hand[i]);
+
+        if (state.hand[i].id === id) {
+          const card = state.hand.splice(i, 1);
+          state.grave.push(card);
+          state.selectedCard = null;
+          return state;
+        }
+      }
+    },
   },
 });
 
-export const { setSelectedCard, resetGame, generateDeck, dealHand } =
+export const { setSelectedCard, resetGame, generateDeck, dealHand, playCard } =
   gameSlice.actions;
 export default gameSlice.reducer;

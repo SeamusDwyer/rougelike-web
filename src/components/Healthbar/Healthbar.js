@@ -1,6 +1,6 @@
 import "./Healthbar.css";
 
-function Healthbar({ health, maxHealth = health }) {
+function Healthbar({ health, maxHealth }) {
   const fraction = (health / maxHealth) * 10;
 
   return (

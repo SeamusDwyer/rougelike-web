@@ -17,6 +17,11 @@
   transform: translate(0, -10px);
 }
 
+.card.card-active {
+  transform: translate(0, -20px);
+  border: solid 4px rgb(255, 175, 56);
+}
+
 .card:hover .title {
   background-color: rgb(118, 69, 167);
 }
