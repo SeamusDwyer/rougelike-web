@@ -1,0 +1,7 @@
+.cards {
+  display: flex;
+  flex-direction: row;
+  width: 50vw;
+  justify-content: space-evenly;
+  margin: 10px;
+}

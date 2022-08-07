@@ -1,0 +1,51 @@
+.card {
+  cursor: pointer;
+  background-color: rgb(248, 240, 222);
+  height: 20vh;
+  width: 8vw;
+  border-radius: 4px;
+  border: solid 4px rgb(112, 112, 204);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease;
+
+  min-width: 100px;
+}
+
+.card:hover {
+  transform: translate(0, -10px);
+}
+
+.card:hover .title {
+  background-color: rgb(118, 69, 167);
+}
+
+.title {
+  background-color: rgb(176, 101, 252);
+  display: flex;
+  justify-content: center;
+  font-size: 0.8em;
+  font-weight: bold;
+  color: #282c34;
+  transition: background-color 0.3s ease;
+}
+
+.cost {
+  background-color: rgb(136, 15, 42);
+  width: 25%;
+  aspect-ratio: 1;
+  border-radius: 100% 100% 0% 0%;
+  align-self: flex-end;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 0.7em;
+}
+
+.description {
+  color: #282c34;
+  font-size: small;
+  margin: 16px;
+}

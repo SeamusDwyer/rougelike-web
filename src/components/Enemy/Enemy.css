@@ -1,0 +1,17 @@
+.enemy {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: 8px;
+}
+
+.enemy-attack:hover {
+  background-color: rgb(177, 92, 92, 0.5);
+  cursor: pointer;
+}
+
+.mouse-image {
+  width: 5vw;
+  min-width: 100px;
+}
