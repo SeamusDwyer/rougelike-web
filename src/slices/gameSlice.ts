@@ -61,11 +61,8 @@ export const gameSlice = createSlice({
       }
     },
     playCard: (state, action) => {
-      console.log("Play card");
       const { id } = action.payload;
       for (let i = 0; i < state.hand.length; i++) {
-        console.log(state.hand[i]);
-
         if (state.hand[i].id === id) {
           const card = state.hand.splice(i, 1);
           state.grave.push(card);

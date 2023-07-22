@@ -1,6 +1,11 @@
-import "./Healthbar.css";
+import './Healthbar.css';
 
-function Healthbar({ health, maxHealth }) {
+type HealthbarProps = {
+  health: number;
+  maxHealth: number;
+};
+
+function Healthbar({ health, maxHealth }: HealthbarProps) {
   const fraction = (health / maxHealth) * 10;
 
   return (

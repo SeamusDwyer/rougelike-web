@@ -1,21 +1,20 @@
-import "./Game.css";
-import catImage from "assets/cat.png";
-import { useSelector, useDispatch } from "react-redux";
-import { resetGame, generateDeck, dealHand } from "slices/gameSlice";
-
-import Cards from "components/Cards/Cards";
-import Enemies from "components/Enemies/Enemies";
-import { generateEnemies } from "slices/enemiesSlice";
-import Healthbar from "components/Healthbar/Healthbar";
-import Deck from "components/Deck";
-import Grave from "components/Grave";
+import './Game.css';
+import catImage from 'assets/cat.png';
+import { resetGame, generateDeck, dealHand } from 'slices/gameSlice';
+import Cards from 'components/cards/cards';
+import Enemies from 'components/Enemies/Enemies';
+import { generateEnemies } from 'slices/enemiesSlice';
+import Healthbar from 'components/Healthbar/Healthbar';
+import Deck from 'components/Deck';
+import Grave from 'components/Grave';
+import { useAppDispatch, useAppSelector } from '../../redux/redux-typed-hooks';
 
 function Game() {
-  const catHealth = useSelector((state) => {
+  const catHealth = useAppSelector((state) => {
     return state.game.playerHealth;
   });
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   return (
     <div className="main">
