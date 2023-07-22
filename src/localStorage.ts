@@ -1,3 +1,6 @@
+import { EnemyState } from 'slices/enemiesSlice';
+import { GameState } from 'slices/gameSlice';
+
 export const loadState = () => {
   try {
     const serializedState = localStorage.getItem('state');
@@ -10,7 +13,7 @@ export const loadState = () => {
   }
 };
 
-export const saveState = (state) => {
+export const saveState = (state: EnemyState | GameState) => {
   try {
     const serializedState = JSON.stringify(state);
     localStorage.setItem('state', serializedState);

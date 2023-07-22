@@ -1,11 +1,20 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { loadState } from "../localStorage";
-import { v4 } from "uuid";
+import { createSlice } from '@reduxjs/toolkit';
+import { loadState } from '../localStorage';
+import { v4 } from 'uuid';
+import { CardProps } from 'components/card/card';
 
 const persistedState = loadState();
 
 const DECK_SIZE = 10;
 const STARTING_HEALTH = 10;
+
+export type GameState = {
+  playerHealth: number;
+  selectedCard: CardProps;
+  deck: CardProps[];
+  hand: CardProps[];
+  grave: CardProps[];
+};
 
 const START_GAME_STATE = {
   playerHealth: STARTING_HEALTH,
@@ -16,7 +25,7 @@ const START_GAME_STATE = {
 };
 
 export const gameSlice = createSlice({
-  name: "game",
+  name: 'game',
   initialState: {
     ...{
       ...START_GAME_STATE,
@@ -44,7 +53,7 @@ export const gameSlice = createSlice({
         deck.push({
           id: v4(),
           title: `Card ${i}`,
-          description: "Deals 1 damage",
+          description: 'Deals 1 damage',
           cost: Math.floor(Math.random() * 9 + 1),
           damage: Math.floor(Math.random() * 9 + 1),
         });
@@ -74,6 +83,5 @@ export const gameSlice = createSlice({
   },
 });
 
-export const { setSelectedCard, resetGame, generateDeck, dealHand, playCard } =
-  gameSlice.actions;
+export const { setSelectedCard, resetGame, generateDeck, dealHand, playCard } = gameSlice.actions;
 export default gameSlice.reducer;

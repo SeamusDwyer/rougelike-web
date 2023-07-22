@@ -1,9 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { loadState } from "../localStorage";
-import { v4 } from "uuid";
+import { createSlice } from '@reduxjs/toolkit';
+import { loadState } from '../localStorage';
+import { v4 } from 'uuid';
 
 const START_GAME_STATE = { enemies: {} };
 const persistedState = loadState();
+
+export type EnemyState = Record<string, Enemy>;
 
 type Enemy = {
   id: string;
@@ -13,7 +15,7 @@ type Enemy = {
 };
 
 export const enemiesSlice = createSlice({
-  name: "enemies",
+  name: 'enemies',
   initialState: {
     ...{
       ...START_GAME_STATE,
@@ -24,9 +26,9 @@ export const enemiesSlice = createSlice({
     generateEnemies: (state) => {
       const enemies: Record<string, Enemy> = {};
       const idA = v4();
-      enemies[idA] = { id: idA, name: "Dave", health: 12, maxHealth: 12 };
+      enemies[idA] = { id: idA, name: 'Dave', health: 12, maxHealth: 12 };
       const idB = v4();
-      enemies[idB] = { id: idB, name: "Paul", health: 5, maxHealth: 5 };
+      enemies[idB] = { id: idB, name: 'Paul', health: 5, maxHealth: 5 };
       state.enemies = enemies;
     },
     damageEnemy: (state, action) => {
