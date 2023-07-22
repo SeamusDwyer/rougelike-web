@@ -10,13 +10,13 @@ const STARTING_HEALTH = 10;
 
 export type GameState = {
   playerHealth: number;
-  selectedCard: CardProps;
+  selectedCard: CardProps | null;
   deck: CardProps[];
   hand: CardProps[];
   grave: CardProps[];
 };
 
-const START_GAME_STATE = {
+const START_GAME_STATE: GameState = {
   playerHealth: STARTING_HEALTH,
   selectedCard: null,
   deck: [],
@@ -48,15 +48,17 @@ export const gameSlice = createSlice({
       return START_GAME_STATE;
     },
     generateDeck: (state) => {
-      const deck = [];
+      const deck: CardProps[] = [];
       for (let i = 0; i < DECK_SIZE; i++) {
-        deck.push({
+        const card: CardProps = {
           id: v4(),
           title: `Card ${i}`,
           description: 'Deals 1 damage',
           cost: Math.floor(Math.random() * 9 + 1),
           damage: Math.floor(Math.random() * 9 + 1),
-        });
+        };
+
+        deck.push(card);
       }
 
       state.deck = deck;
@@ -65,7 +67,7 @@ export const gameSlice = createSlice({
       const HAND_SIZE = 3;
 
       for (let i = 0; i < HAND_SIZE && state.deck.length; i++) {
-        const card = state.deck.pop();
+        const card: CardProps = state.deck.pop();
         state.hand.push(card);
       }
     },
@@ -73,7 +75,7 @@ export const gameSlice = createSlice({
       const { id } = action.payload;
       for (let i = 0; i < state.hand.length; i++) {
         if (state.hand[i].id === id) {
-          const card = state.hand.splice(i, 1);
+          const card: CardProps = state.hand.splice(i, 1);
           state.grave.push(card);
           state.selectedCard = null;
           return state;

@@ -1,8 +1,8 @@
-import './Enemy.css';
+import './enemy.css';
 import mouseImage from 'assets/mouse.png';
 import cx from 'classnames';
 import { useDispatch } from 'react-redux';
-import Healthbar from '../Healthbar/Healthbar';
+import Healthbar from 'components/healthbar/healthbar';
 import { damageEnemy } from 'slices/enemiesSlice';
 import { playCard } from 'slices/gameSlice';
 import { useAppSelector } from '../../redux/redux-typed-hooks';

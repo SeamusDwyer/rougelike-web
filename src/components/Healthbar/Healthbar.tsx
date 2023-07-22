@@ -1,4 +1,4 @@
-import './Healthbar.css';
+import './healthbar.css';
 
 type HealthbarProps = {
   health: number;

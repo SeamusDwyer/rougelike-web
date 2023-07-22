@@ -5,9 +5,11 @@ import cx from 'classnames';
 import { useAppSelector } from '../../redux/redux-typed-hooks';
 
 export type CardProps = {
+  id: string;
   title: string;
   description: string;
   cost: number;
+  damage: number;
 };
 
 function Card({ card }: { card: CardProps }) {

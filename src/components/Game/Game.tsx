@@ -1,19 +1,18 @@
-import './Game.css';
+import './game.css';
 import catImage from 'assets/cat.png';
 import { resetGame, generateDeck, dealHand } from 'slices/gameSlice';
 import Cards from 'components/cards/cards';
-import Enemies from 'components/Enemies/Enemies';
+import Enemies from 'components/enemies/enemies';
 import { generateEnemies } from 'slices/enemiesSlice';
-import Healthbar from 'components/Healthbar/Healthbar';
-import Deck from 'components/Deck';
-import Grave from 'components/Grave';
+import Healthbar from 'components/healthbar/healthbar';
+import Deck from 'components/deck';
+import Grave from 'components/grave';
 import { useAppDispatch, useAppSelector } from '../../redux/redux-typed-hooks';
+import { nextPhase } from 'slices/phaseSlice';
 
 function Game() {
-  const catHealth = useAppSelector((state) => {
-    return state.game.playerHealth;
-  });
-
+  const catHealth = useAppSelector(({ game: { playerHealth } }) => playerHealth);
+  const phase = useAppSelector(({ phase: { phase } }) => phase);
   const dispatch = useAppDispatch();
 
   return (
@@ -31,6 +30,14 @@ function Game() {
       <Cards />
       <Deck />
       <Grave />
+      <div>{phase}</div>
+      <button
+        onClick={() => {
+          dispatch(nextPhase());
+        }}
+      >
+        Next Phase
+      </button>
       <div>
         <button
           onClick={() => {

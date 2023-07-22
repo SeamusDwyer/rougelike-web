@@ -1,7 +1,7 @@
-import { useSelector } from "react-redux";
+import { useAppSelector } from 'redux/redux-typed-hooks';
 
 function Grave() {
-  const grave = useSelector((state) => state.game.grave);
+  const grave = useAppSelector((state) => state.game.grave);
 
   return <div>Grave : {grave.length}</div>;
 }

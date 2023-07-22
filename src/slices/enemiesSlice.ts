@@ -2,10 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 import { loadState } from '../localStorage';
 import { v4 } from 'uuid';
 
-const START_GAME_STATE = { enemies: {} };
+const START_GAME_STATE: EnemyState = { enemies: {} };
 const persistedState = loadState();
 
-export type EnemyState = Record<string, Enemy>;
+export type EnemyState = {
+  enemies: Record<string, Enemy>;
+};
 
 type Enemy = {
   id: string;

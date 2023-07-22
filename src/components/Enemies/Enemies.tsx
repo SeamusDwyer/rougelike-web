@@ -1,9 +1,9 @@
-import "./Enemies.css";
-import Enemy from "components/Enemy/Enemy";
-import { useSelector } from "react-redux";
+import './enemies.css';
+import Enemy from 'components/enemy/enemy';
+import { useAppSelector } from 'redux/redux-typed-hooks';
 
 function Enemies() {
-  const enemies = useSelector((state) => state.enemies.enemies);
+  const enemies = useAppSelector((state) => state.enemies.enemies);
 
   return (
     <div className="enemies">
